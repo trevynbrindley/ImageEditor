@@ -10,7 +10,6 @@ public class Rec2D {
 
     public Vector2 Scale;
     public Vector2 Position;
-    public Vector2 Velocity;
     public Texture RecTexture;
     private Pixmap _pixelMap;
     private Color _recColor;
@@ -24,8 +23,11 @@ public class Rec2D {
 	Pixmap rectangleMap;
 	Pixmap otherRectangleMap;
 
-    public Rec2D(Vector2 scale, Vector2 position, Vector2 velocity, Color recColor) {
-        
+    public Rec2D(Vector2 scale, Vector2 position, Color recColor) {
+        Scale = scale;
+        Position = position;
+        _recColor = recColor;
+        generateTexture();
     }
 
     private void generateTexture() {

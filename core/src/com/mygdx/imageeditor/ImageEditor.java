@@ -13,32 +13,35 @@ import java.util.Random;
 
 public class ImageEditor extends ApplicationAdapter {
 	SpriteBatch batch;
-	Rec2D rectangle;
+	Button button1;
+	Button button2;
 	private Vector2 _screenSize;
+	public Vector2 ScreenSize;
+	public static CollisionManager Instance;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		_screenSize = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		rectangle = new Rec2D(new Vector2(200, 100), new Vector2(200,200), new Vector2(5, 0), Color.RED);
+		InputManager inputManager = new InputManager();
+		Gdx.input.setInputProcessor(inputManager);
+		Vector2 rectangleScale = new Vector2(100, 50);
+		button1 = new Button(rectangleScale, new Vector2(ScreenSize.x / 2f - rectangleScale.x * 2, ScreenSize.y / 2f - rectangleScale.y / 2f), Color.ORANGE);
+		button2 = new Button(rectangleScale, new Vector2(ScreenSize.x / 2f + rectangleScale.x, ScreenSize.y / 2f - rectangleScale.y / 2f), Color.GREEN);
+		CollisionManager collisionManager = new CollisionManager(button1, button2);
 	}
 
 	@Override
-	public void render () {
+	public void render() {
 		ScreenUtils.clear(0f, 0f, 0f, 1);
 		batch.begin();
-		batch.draw(rectangle.RecTexture, rectangle.Position.x, rectangle.Position.y);
-		if(rectangle.Position.x < _screenSize.x){
-			rectangle.Velocity.x *= -1;
-		}
-		Random random = new Random();
-		rectangle.changeColor(new Color(random.nextFloat(), random.nextFloat(), random.nextFloat(), 1));
-		rectangle.Position.add(rectangle.Velocity);
+		batch.draw(button1.RecTexture, button1.Position.x, button1.Position.y);
+		batch.draw(button2.RecTexture, button2.Position.x, button2.Position.y);
 		batch.end();
 	}
-	
+
 	@Override
-	public void dispose () {
+	public void dispose() {
 		batch.dispose();
 	}
 }
