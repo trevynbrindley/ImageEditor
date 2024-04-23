@@ -17,16 +17,20 @@ public class ImageEditor extends ApplicationAdapter {
 	public Vector2 ScreenSize;
 	public static CollisionManager Instance;
 	private EditWindow _editWindow;
+	Pixmap editMap = ImageInputOutput.Instance.loadImage("blackbuck.bmp");
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
+		new ImageInputOutput();
+		ImageInputOutput.Instance.loadImage("FakeFilepath");
 		_screenSize = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		InputManager inputManager = new InputManager();
 		Gdx.input.setInputProcessor(inputManager);
 		Vector2 editWindowSize = new Vector2(500, ScreenSize.y - 50);
 		_editWindow = new EditWindow(
 				editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
+		editWindow.DoodleTexture = new Texture(editMap);
 		CollisionManager collisionManager = new CollisionManager();
 	}
 
@@ -39,7 +43,7 @@ public class ImageEditor extends ApplicationAdapter {
 			batch.draw(rec.RecTexture, rec.Position.x, rec.Position.y, rec.Scale.x, rec.Scale.y);
 		}
 		batch.draw(_editWindow.DoodleTexture, _editWindow.Position.x,
-			_editWindow.Position.y, _editWindow.Scale.x, _editWindow.Scale.y);
+				_editWindow.Position.y, _editWindow.Scale.x, _editWindow.Scale.y);
 	}
 
 	@Override
