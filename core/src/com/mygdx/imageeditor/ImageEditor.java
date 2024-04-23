@@ -13,31 +13,33 @@ import java.util.Random;
 
 public class ImageEditor extends ApplicationAdapter {
 	SpriteBatch batch;
-	Button button1;
-	Button button2;
 	private Vector2 _screenSize;
 	public Vector2 ScreenSize;
 	public static CollisionManager Instance;
+	private EditWindow _editWindow;
 
 	@Override
-	public void create () {
+	public void create() {
 		batch = new SpriteBatch();
 		_screenSize = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		InputManager inputManager = new InputManager();
 		Gdx.input.setInputProcessor(inputManager);
-		Vector2 rectangleScale = new Vector2(100, 50);
-		button1 = new Button(rectangleScale, new Vector2(ScreenSize.x / 2f - rectangleScale.x * 2, ScreenSize.y / 2f - rectangleScale.y / 2f), Color.ORANGE);
-		button2 = new Button(rectangleScale, new Vector2(ScreenSize.x / 2f + rectangleScale.x, ScreenSize.y / 2f - rectangleScale.y / 2f), Color.GREEN);
-		CollisionManager collisionManager = new CollisionManager(button1, button2);
+		Vector2 editWindowSize = new Vector2(500, ScreenSize.y - 50);
+		_editWindow = new EditWindow(
+				editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
+		CollisionManager collisionManager = new CollisionManager();
 	}
 
 	@Override
 	public void render() {
 		ScreenUtils.clear(0f, 0f, 0f, 1);
-		batch.begin();
-		batch.draw(button1.RecTexture, button1.Position.x, button1.Position.y);
-		batch.draw(button2.RecTexture, button2.Position.x, button2.Position.y);
-		batch.end();
+		Rec2D rec;
+		for (int i = 0; i < Rectangles.size; i++) {
+			rec = Rectangles.get(i);
+			batch.draw(rec.RecTexture, rec.Position.x, rec.Position.y, rec.Scale.x, rec.Scale.y);
+		}
+		batch.draw(_editWindow.DoodleTexture, _editWindow.Position.x,
+			_editWindow.Position.y, _editWindow.Scale.x, _editWindow.Scale.y);
 	}
 
 	@Override
