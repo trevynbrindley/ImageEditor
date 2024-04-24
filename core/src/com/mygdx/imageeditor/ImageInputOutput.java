@@ -1,16 +1,46 @@
 package com.mygdx.imageeditor;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 
 public class ImageInputOutput {
     public static ImageInputOutput Instance;
+    private byte[] _fileHeader;
+    private Pixmap _pixels;
+    private int startPoint;
 
     public ImageInputOutput() {
         Instance = this;
     }
 
-    public void loadImage(String filePath) {
+    public void saveImage(String filePath) throws IOException {
+        FileOutputStream output = new FileOutputStream(filePath);
+        byte[] color;
+        byte[] colorData = new byte[_pixels.getWidth() * _pixels.getHeight() * 3];
+        Pixmap doodle = EditWindow.Instance.DoodleMap;
+        int colorIndex = 0;
+        for (int y = _pixels.getHeight() - 1; y >= 0; y--) {
+            for (int x = 0; x < _pixels.getWidth(); x++) {
+                int tempColor = _pixels.getPixel(x, y);
+                color = Util.intToSignedBytes(_pixels.getPixel(x, y));
+                colorData[colorIndex] = color[2];
+                colorData[colorIndex + 1] = color[1];
+                colorData[colorIndex + 2] = color[0];
+                colorIndex += 3;
+            }
+        }
+        byte[] fileBytes = Gdx.files.internal(filePath).readBytes();
+        output.write(fileBytes);
+        output.write(_fileHeader);
+        output.write(colorData);
+        output.close();
+    }
+
+    public Pixmap loadImage(String filePath) {
+        _fileHeader[] = new byte[startPoint];
         byte[] bytes = Gdx.files.internal(filePath).readBytes();
         if (bytes[0] != 'B' || bytes[1] != 'M') {
             System.out.println(filePath + " is NOT a bitmap image");
@@ -33,9 +63,9 @@ public class ImageInputOutput {
 
     public static int[] unsignBytes(byte[] bytes) {
         int[] ints = new int[bytes.length];
-        for(int i = 0; i < bytes.length; i++) {
+        for (int i = 0; i < bytes.length; i++) {
         }
         return ints;
-        }
+    }
 
 }

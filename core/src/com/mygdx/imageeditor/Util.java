@@ -8,4 +8,19 @@ public class Util {
         }
         return result;
     }
+
+    public static byte[] intToSignedBytes(int value) {
+        byte[] result = new byte[4];
+        return result;
+    }
+
+    public static void testIntToSignedBytes() {
+        byte[] testResults = intToSignedBytes(543152314);
+        int[] expectedResults = { 32, 95, -40, -70 };
+        for (int i = 0; i < testResults.length; i++) {
+            if ((int) testResults[i] != expectedResults[i])
+                System.out.println("TEST FAILED! INDEX " + i + " IS "
+                        + testResults[i] + " EXPECTED: " + expectedResults[i]);
+        }
+    }
 }

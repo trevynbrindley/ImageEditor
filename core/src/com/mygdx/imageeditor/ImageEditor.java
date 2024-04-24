@@ -21,6 +21,7 @@ public class ImageEditor extends ApplicationAdapter {
 
 	@Override
 	public void create() {
+		Util.testIntToSignedBytes();
 		batch = new SpriteBatch();
 		new ImageInputOutput();
 		ImageInputOutput.Instance.loadImage("FakeFilepath");
@@ -28,10 +29,8 @@ public class ImageEditor extends ApplicationAdapter {
 		InputManager inputManager = new InputManager();
 		Gdx.input.setInputProcessor(inputManager);
 		Vector2 editWindowSize = new Vector2(500, ScreenSize.y - 50);
-		_editWindow = new EditWindow(
-				editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
+		_editWindow = new EditWindow(editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
 		editWindow.DoodleTexture = new Texture(editMap);
-		CollisionManager collisionManager = new CollisionManager();
 	}
 
 	@Override
