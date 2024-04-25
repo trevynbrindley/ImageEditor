@@ -20,7 +20,7 @@ public class ImageInputOutput {
         FileOutputStream output = new FileOutputStream(filePath);
         byte[] color;
         byte[] colorData = new byte[_pixels.getWidth() * _pixels.getHeight() * 3];
-        Pixmap doodle = EditWindow.Instance.DoodleMap;
+        //Pixmap doodle = EditWindow.Instance.DoodleMap;
         int colorIndex = 0;
         for (int y = _pixels.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < _pixels.getWidth(); x++) {
@@ -40,11 +40,11 @@ public class ImageInputOutput {
     }
 
     public Pixmap loadImage(String filePath) {
-        _fileHeader[] = new byte[startPoint];
+        //_fileHeader[] = new byte[startPoint];
         byte[] bytes = Gdx.files.internal(filePath).readBytes();
         if (bytes[0] != 'B' || bytes[1] != 'M') {
             System.out.println(filePath + " is NOT a bitmap image");
-            return;
+            //return;
         }
         byte[] fileSize = { bytes[2], bytes[3], bytes[4], bytes[5] };
         byte[] start = { bytes[10], bytes[11], bytes[12], bytes[13] };
@@ -57,8 +57,9 @@ public class ImageInputOutput {
         int bytesPerPixel = Util.bytesToInt(bitsPerPixel) / 8;
         if (bytesPerPixel != 3) {
             System.out.println("Unsupported image pixel format. Incorrect bits per pixel");
-            return;
+            //return;
         }
+        return null;
     }
 
     public static int[] unsignBytes(byte[] bytes) {

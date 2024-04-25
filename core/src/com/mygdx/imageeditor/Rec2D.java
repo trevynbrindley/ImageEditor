@@ -30,7 +30,7 @@ public class Rec2D {
         generateTexture();
     }
 
-    private void generateTexture() {
+    public void generateTexture() {
         rectangleMap = new Pixmap(50, 500, Format.RGBA8888);
 		otherRectangleMap = new Pixmap(300, 50, Format.RGBA8888);
 		rectangleMap.setColor(Color.GREEN);

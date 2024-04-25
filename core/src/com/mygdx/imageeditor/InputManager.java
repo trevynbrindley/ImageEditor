@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.graphics.Color;
 
 public class InputManager implements InputProcessor {
+    public static final String Hoverables = null;
     public CollisionManager Instance;
     public Array<Button> Buttons = new Array<Button>();
     private boolean _controlPressed;
@@ -27,6 +28,7 @@ public class InputManager implements InputProcessor {
             _controlPressed = true;
             return false;
         }
+        return false;
     }
 
     public boolean keyUp(int keycode) {
@@ -51,12 +53,14 @@ public class InputManager implements InputProcessor {
                 rectangleScale,
                 new Vector2(_screenSize.x / 2f - rectangleScale.x, _screenSize.y / 2f - rectangleScale.y / 2f),
                 Color.GREEN);
+        /* 
         Rec2D collision = CollisionManager.Instance
                 .getCollision(new Vector2(screenX, ImageEditor.ScreenSize.y - screenY));
         if (collision == ImageEditor.Instance.button1)
             System.out.println("Pressed button 1");
         else if (collision == ImageEditor.Instance.button2)
             System.out.println("Pressed button 2");
+        */
         return true;
     }
 

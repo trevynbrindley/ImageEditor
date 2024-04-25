@@ -29,18 +29,18 @@ public class ImageEditor extends ApplicationAdapter {
 		InputManager inputManager = new InputManager();
 		Gdx.input.setInputProcessor(inputManager);
 		Vector2 editWindowSize = new Vector2(500, ScreenSize.y - 50);
-		_editWindow = new EditWindow(editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
-		editWindow.DoodleTexture = new Texture(editMap);
+		//_editWindow = new EditWindow(editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
+		//editWindow.DoodleTexture = new Texture(editMap);
 	}
 
 	@Override
 	public void render() {
 		ScreenUtils.clear(0f, 0f, 0f, 1);
 		Rec2D rec;
-		for (int i = 0; i < Rectangles.size; i++) {
+		/*for (int i = 0; i < Rectangles.size; i++) {
 			rec = Rectangles.get(i);
 			batch.draw(rec.RecTexture, rec.Position.x, rec.Position.y, rec.Scale.x, rec.Scale.y);
-		}
+		}*/
 		batch.draw(_editWindow.DoodleTexture, _editWindow.Position.x,
 				_editWindow.Position.y, _editWindow.Scale.x, _editWindow.Scale.y);
 	}

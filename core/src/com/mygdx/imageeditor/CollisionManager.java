@@ -3,6 +3,7 @@ package com.mygdx.imageeditor;
 import com.badlogic.gdx.math.Vector2;
 
 public class CollisionManager {
+    public static final String ScreenSize = null;
     private Rec2D _recOne, _recTwo;
     public static CollisionManager Instance;
     
@@ -15,9 +16,11 @@ public class CollisionManager {
 
     public Rec2D getCollision(Vector2 coordinates) {
         Button iteratingButton;
+        /*
         for(int i = 0; i < InputManager.Instance.Buttons.size; i++) {
             iteratingButton = InputManager.Instance.Buttons.get(i);
         }
+        */
         // Check to see if we collided with _recOne
         if (coordinates.x > _recOne.Position.x) {
             return _recOne;

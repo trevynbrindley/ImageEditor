@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 public class EditWindow extends Button implements IClickable {
+    public static final String Instance = null;
     public Texture DoodleTexture;
     private Pixmap _doodleMap;
     private Vector2 _previousPaintPosition;
@@ -21,10 +22,14 @@ public class EditWindow extends Button implements IClickable {
 
     @Override
     public void onClickDragged(Vector2 clickPosition) {
-        mouseMoved(screenX, screenY);
-        if (_currentlyClicked != null)
-            _currentlyClicked.onClickDragged(new Vector2(screenX, ImageEditor.Instance.ScreenSize.y - screenY));
-        paintAtPosition(mousePosition);
+        Object screenX;
+        Object screenY;
+        //mouseMoved(screenX, screenY);
+        Object _currentlyClicked;
+       // if (_currentlyClicked != null)
+       //     ((EditWindow) _currentlyClicked).onClickDragged(new Vector2(screenX, ImageEditor.Instance.ScreenSize.y - screenY));
+      //  Vector2 mousePosition;
+      //  paintAtPosition(mousePosition);
     }
 
     private void paintAtPosition(Vector2 worldPosition) {
@@ -41,7 +46,8 @@ public class EditWindow extends Button implements IClickable {
 
     public void onClickDown(Vector2 clickPosition) {
         System.out.println("Clicked on the Edit Window");
-        _doodleMap.drawPixel((int) (Position.x - Position.x), (int) (Scale.y - position.y));
+        Object position;
+        //_doodleMap.drawPixel((int) (Position.x - Position.x), (int) (Scale.y - position.y));
         DoodleTexture = new Texture(_doodleMap);
         if (_previousPaintPosition == null)
             _previousPaintPosition = new Vector2(clickPosition.x - Position.x, Scale.y - clickPosition.y);

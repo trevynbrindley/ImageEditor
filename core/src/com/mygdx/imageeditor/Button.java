@@ -33,4 +33,28 @@ public class Button extends Rec2D implements IClickable, IHoverable {
     public void add(){
 
     }
+
+    @Override
+    public IHoverable getHovered(com.mygdx.imageeditor.Vector2 coordinates) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getHovered'");
+    }
+
+    @Override
+    public void onClickDown(Vector2 clickPosition) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickDown'");
+    }
+
+    @Override
+    public void onClickUp(Vector2 clickPosition) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickUp'");
+    }
+
+    @Override
+    public void onClickDragged(Vector2 clickPosition) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickDragged'");
+    }
 }
